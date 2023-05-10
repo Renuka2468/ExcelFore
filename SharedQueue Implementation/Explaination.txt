@@ -1,0 +1,24 @@
+
+In This Implementation, The SharedQueue class implements a simple queue using a LinkedList and a lock object.
+
+The add() method adds a string to the end of the queue and notifies all waiting threads that a new element has 
+been added. The remove() method removes the first element from the queue, waiting if the queue is empty.
+
+The Consumer class is implements Runnable that runs in a loop, continuously removing elements from the queue
+and printing a message to the console. The Writer class is also implements Runnable that adds 5 messages a
+second to the queue.
+
+The SharedQueueTest class creates a shared queue and starts a single writer thread and 5 consumer threads. 
+The writer thread adds 5 messages to the queue, while the consumer 5 threads evenly remove messages from
+the queue.
+
+The synchronized block is used to ensure that only one thread can modify the queue at a time. The wait() and 
+notifyAll() methods are used to avoid busy-waiting and unnecessary CPU usage when the queue is empty.
+Multiple readers can wait for the next message without blocking each other's access, as the wait method 
+releases the lock on the queue, allowing other threads to acquire it and remove elements from the queue.
+
+The notifyAll() method wakes up all waiting threads, ensuring that at least one thread will be able to acquire 
+the lock and remove the next element from the queue. The time spent in a locked condition is minimized by
+using the wait() method, which releases the lock on the queue and allows other threads to execute. When a new 
+element is added to the queue, the lock is re-acquired and all waiting threads are notified to wake up and 
+acquire the lock to remove the next element from the queue. This avoids busy-waiting and unnecessary CPU usage.

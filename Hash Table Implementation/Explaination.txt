@@ -1,0 +1,17 @@
+In this implementation, The hash table is an array of Entry objects, where each Entry contains a key-value
+pair and a reference to the next entry in the linked list in case of hash collisions. The hash function used 
+is the built-in hashCode() method of the key string, and it returns an index into the table based on the least
+significant bits of the hash code. The table size is doubled and all entries are rehashed when the load factor
+exceeds a certain threshold.
+
+•	The get() method has an O(1) runtime for value lookup, since the hash function returns the index directly 
+    and each entry in the linked list is checked only once.
+•	The built-in hashCode() method is used as the hash function, which is suitable for this task since it 
+    generates unique hash codes for different strings with high probability.
+•	The resize() method is called when the load factor exceeds a certain threshold, which ensures that the 
+    hash table size is increased before it becomes too full and the runtime of hash operations becomes 
+    degraded. During resizing, all entries are rehashed and moved to the new table, which minimizes the time 
+    spent in a locked condition since the old table is not accessed during this process.
+•	The put() method is use to add key-value pair and each entry store according to Hash index value.
+
+

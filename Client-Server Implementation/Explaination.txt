@@ -1,0 +1,20 @@
+It is an implementation of the server and client in Java, using the TCP protocol:
+
+//Server Class
+The Server class listens on the specified port for incoming client connections. When a client connects,
+a new thread is created to handle the client connection. The thread reads input from the client using a 
+BufferedReader, and writes output back to the client using a PrintWriter. If the received input is a "ping"
+message, it sends a "pong" response back to the client. The thread continues to read input from the client 
+until the client disconnects or an error occurs.
+
+//Client Class
+The Client class creates a socket and connects to the server at the specified address and port. It reads 
+input from the server using a BufferedReader, and writes output to the server using a PrintWriter. 
+It enters a loop to send a "ping" message to the server every second. After sending a ping, it waits for a 
+response from the server. If the response is a "pong" message, it prints a message indicating that the pong 
+was received. If the response is not a "pong" message, it prints a message indicating that unexpected data 
+was received, and then stops.
+
+//Multiple clients able to connect with the server by using multithreading to handles each thread 
+independently.
+//Network error handles in both server and client class.
